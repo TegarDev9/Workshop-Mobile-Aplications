@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="submit">SIGN IN</string>
+    <color name="GREY">#BDBDBD</color>
+    <color name="blueblack">#212121</color>
+    <string name="next">Tugas pertemuan 4</string>
+    <string-array name="country">
+        <item>Indonesia</item>
+        <item>Palestina</item>
+        <item>saudi arabia</item>
+        <item>Malaysia</item>
+        <item>Singapura</item>
+        <item>Amerika</item>
+        <item>Jerman</item>
+        <item>Korea</item>
+        <item>India</item>
+    </string-array>
+</resources>
