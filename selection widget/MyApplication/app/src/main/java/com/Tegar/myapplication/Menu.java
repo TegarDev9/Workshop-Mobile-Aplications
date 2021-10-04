@@ -15,6 +15,7 @@ public class Menu extends AppCompatActivity {
     private Button ButtonLogin2;
 
     @Override
+    /**mencari view id */
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
@@ -22,6 +23,7 @@ public class Menu extends AppCompatActivity {
         ButtonLogin2 =findViewById(R.id.btnLogin2);
         ButtonLogin2.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**Membuat pindah dengan intent**/
             public void onClick(View v) {
                 Intent pindah = new Intent(Menu.this,tugas.class) ;
                 startActivity(pindah);

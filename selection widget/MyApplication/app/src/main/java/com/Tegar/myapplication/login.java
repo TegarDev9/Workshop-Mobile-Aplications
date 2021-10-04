@@ -11,6 +11,8 @@ public class login extends AppCompatActivity {
     private Button buttonLogin;
 
     @Override
+    /**Mencari id **/
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -18,6 +20,7 @@ public class login extends AppCompatActivity {
         buttonLogin = findViewById(R.id.btnLogin);
        buttonLogin.setOnClickListener(new View.OnClickListener() {
            @Override
+           /**Membuat inten pindah */
            public void onClick(View v) {
                Intent pindah = new Intent(login.this, Menu.class);
                startActivity(pindah);

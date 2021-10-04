@@ -28,19 +28,20 @@ public class tugas extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tugas);
-
+        /**Membuat Adapter Array*/
         autoCompletekota = findViewById(R.id.autoCompletekota);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, KOTA);
         autoCompletekota.setAdapter(adapter);
-
+          /**Untuk mendapatkan data dari months*/
         listViewMonth = findViewById(R.id.ListViewMonth);
         months = new DateFormatSymbols().getMonths();
-
+          /**Membuat Adapter */
         ArrayAdapter<String> list = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, months);
         listViewMonth.setAdapter(adapter);
 
         listViewMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+            /**membuat Toast*/
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Anda Klik bulan: " + parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
 
