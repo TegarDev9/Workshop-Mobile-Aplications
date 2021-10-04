@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".DetailMoviesActivity2">
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="Title"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_toRightOf="@+id/tvTitle"
+        android:text="8.6"
+        android:layout_marginLeft="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvReleaseDate"
+        android:layout_below="@+id/tvTitle"
+        android:text="Tanggal Rilis"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextureView
+        android:id="@+id/separator"
+        android:text="|"
+        android:layout_below="@+id/tvTitle"
+        android:layout_toRightOf="@+id/tvReleaseDate"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvGenre"
+        android:layout_toRightOf="@+id/separator"
+        android:layout_below="@+id/tvTitle"
+        android:text="Genre:Action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvDirector"
+        android:text="Nama Director"
+        android:layout_below="@+id/tvReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:text="Deskripsi movie"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvDirector"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
