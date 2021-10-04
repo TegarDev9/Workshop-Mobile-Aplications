@@ -3,7 +3,9 @@ package com.tegar.recycleviewdatamovies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**implement Parcelable,sebelum mengimplemet install plugin Parselab;e dulu*/
 public class Movies implements Parcelable {
+    /**Mebuat data2 dengan string dan double*/
     private String title;
     private String genre;
     private String director;
@@ -11,7 +13,7 @@ public class Movies implements Parcelable {
     private String description;
     private String releasedate;
 
-
+/**membuat Consruktor dan getter setter*/
     public Movies(String title, String genre, String director, double rating, String description, String releasedate) {
         this.title = title;
         this.genre = genre;
