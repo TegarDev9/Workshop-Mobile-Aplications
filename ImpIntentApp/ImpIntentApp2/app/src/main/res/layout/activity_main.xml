@@ -21,7 +21,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="48dp"
-        android:text="Nama saya" />
+        android:text="Nama:" />
 
     <EditText
         android:id="@+id/edt_nama"
