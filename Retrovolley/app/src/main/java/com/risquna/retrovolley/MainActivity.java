@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.risquna.retrovolley.activity.RetrofitActivity;
 import com.risquna.retrovolley.activity.VolleyActivity;
+import com.risquna.retrovolley.model.User;
 import com.risquna.retrovolley.retrofit.GlobalVariable;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_main );
 
-        pref - getSharedPreferences ( GlobalVariable.PREFERENCE_NAME, MODE_PRIVATE );
+        pref = getSharedPreferences ( GlobalVariable.PREFERENCE_NAME, MODE_PRIVATE );
         Bundle extras = getIntent ().getExtras ();
         if (extras != null) {
             setTitle ( extras.getString ( GlobalVariable.CURRENT_USERNAME ) );

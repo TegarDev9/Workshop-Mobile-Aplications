@@ -11,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Retrovolley">
+        <activity android:name=".activity.UpdateUserActivity"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.AddUserActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
 
+    </application>
 </manifest>
