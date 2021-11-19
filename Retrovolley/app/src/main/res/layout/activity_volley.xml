@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.VolleyActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="8.50121653" />
+    <Button
+        android:id="@+id/btn_volley_close"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Close"
+        android:onclick="actionClose"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartof="@+id/guideline4"
+        app:layout_constraintStart_toStartof ="parent"
+        tools:ignore="MissingConstraints" />
+     <Button
+         tools:ignore="MissingConstraints"
+         android:id="@+id/btn_volley_refresh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginstart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Refresh"
+         android:onclick="actionRefresh"
+         app:layout_constraintBottom_toBottomOf="@+id/btn_volley_close"
+         app:layout_constraintEnd_toEndof="parent"
+         app:layout_constraintstart_toStartof="@+id/guideline4"
+         app:layout_constraintTop_toTopOf="@+id/btn_volley_close" />
+    <ListView
+        android:id="@+id/lv_user_volley"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_volley_close"
+        app:layout_constraintEnd_toEndof="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

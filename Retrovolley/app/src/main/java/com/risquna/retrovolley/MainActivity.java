@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 View urlView = getLayoutInflater ().inflate ( R.layout.prompt_url, null );
                 EditText edtBaseURL = urlView.findViewById ( R.id.edt_base_url );
                 String globalURL = pref.getString ( GlobalVariable.BASE_URL, null );
+
                 if (globalURL != null) {
                     edtBaseURL.setText ( globalURL );
                 }

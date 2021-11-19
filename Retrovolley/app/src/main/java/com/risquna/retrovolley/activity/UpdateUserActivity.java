@@ -1,5 +1,7 @@
 package com.risquna.retrovolley.activity;
 
+import static android.icu.lang.UScript.getCode;
+
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -92,7 +94,7 @@ public class UpdateUserActivity extends AppCompatActivity {
                 public void onResponse (Call<Request> call, Response<Request> response) {
                     proDialog.dismiss();
                     if (response.body() != null) {
-                        if (response.body() = getCode() ==200) {
+                       if (response.body () !=null){
                             Toast.makeText(getApplicationContext(),
                                      "Response : "+response.body().getStatus(),
                                     Toast.LENGTH_SHORT).show();
@@ -190,4 +192,3 @@ public class UpdateUserActivity extends AppCompatActivity {
                     }
 
 
-    }

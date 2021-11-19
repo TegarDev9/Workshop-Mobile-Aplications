@@ -81,8 +81,7 @@ public class AddUserActivity extends AppCompatActivity {
             edtEmail.requestFocus ();
             isInputValid = false;
         } else {
-            isInputValid
-                    = true;
+            isInputValid = true;
         }
         if (edtPassword.getText ().toString ().isEmpty ()) {
             edtPassword.setError ( "Tidak boleh kosong" );
@@ -180,24 +179,28 @@ public class AddUserActivity extends AppCompatActivity {
                         proDialog.dismiss ();
                         if (response != null) {
                             Request requestFormat = gson.fromJson ( response.toString (), Request.class );
-                            if (requestFormat.getCode() == 201) {
+                            if (requestFormat.getCode () == 201) {
                                 Toast.makeText ( getApplicationContext (),
-                                        "Response :" + requestFormat.getStatus(),
+                                        "Response :" + requestFormat.getStatus (),
                                         Toast.LENGTH_SHORT ).show ();
                                 finish ();
-                            } else if (requestFormat.getCode () == 406) {
-                                Toast.makeText ( getApplicationContext (),
-                                        "Response : " + requestFormat.getStatus (),
-                                        Toast.LENGTH_SHORT ).show ();
-                            } else {
-                                Toast.makeText ( getApplicationContext (),
-                                        "Response : " + requestFormat.getStatus (),
-                                        Toast.LENGTH_SHORT ).show ();
-                                finish ();
-                            }
 
+                            } else if (requestFormat.getCode () == 406) {
+                                    Toast.makeText ( getApplicationContext (),
+                                            "Response : " + requestFormat.getStatus (),
+                                            Toast.LENGTH_SHORT ).show ();
+
+                        } else {
+                            Toast.makeText ( getApplicationContext (),
+                                    "Response :" + requestFormat.getStatus (),
+                                    Toast.LENGTH_SHORT ).show ();
+                            finish ();
                         }
+
                     }
+
+                }
+
                 }, new com.android.volley.Response.ErrorListener () {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -205,16 +208,14 @@ public class AddUserActivity extends AppCompatActivity {
                 Log.e( TAG, "Error POST Volley : " + error.getMessage () );
             }
         } ) {
-            @Override
-            public  byte[] getBody() {
-                return userRequest.getBytes ();
-            }
+
 
         };
         requestQueue.add ( request );
         requestQueue.start ();
     }
 }
+
 
 
 

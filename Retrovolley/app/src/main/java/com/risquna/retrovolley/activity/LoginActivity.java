@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         int id = item.getItemId ();
         switch (id) {
             case R.id.action_url:
-                View urlView = getLayoutInflater ().inflate ( R.layout.prom_url, null );
+                View urlView = getLayoutInflater ().inflate ( R.layout.prompt, null );
                 EditText edtBaseURL = urlView.findViewById ( R.id.edt_base_url );
                 String globalURL = pref.getString ( GlobalVariable.BASE_URL, null );
                 if (globalURL != null) {
@@ -103,193 +103,200 @@ public class LoginActivity extends AppCompatActivity {
 
         public void actionLogin(View view) {
             boolean isInputValid = false;
-            if (edtUserEmail.getText().toString().isEmpty()) {
-                edtUserEmail.setError("Tidak boleh kosong");
-                edtUserEmail.requestFocus();
+
+            if (edtUserEmail.getText ().toString ().isEmpty ()) {
+                edtUserEmail.setError ( "Tidak boleh kosong" );
+                edtUserEmail.requestFocus ();
                 isInputValid = false;
             } else
                 isInputValid = true;
 
-            if (edtUserPassword.getText().toString().isEmpty()) {
-                edtUserPassword.setError("Tidak boleh kosong");
-                edtUserPassword.requestFocus();
+            if (edtUserPassword.getText ().toString ().isEmpty ()) {
+                edtUserPassword.setError ( "Tidak boleh kosong" );
+                edtUserPassword.requestFocus ();
                 isInputValid = false;
             } else
                 isInputValid = true;
+
             if (isInputValid) {
-                User user = new User();
-                user.setUser_email(edtUserEmail.getText().toString());
-                user.setUser_password(edtUserPassword.getText().toString());
-                loginUsingRetrofit (user.getUser_email(), user.getUser_password());
+                User user = new User ();
+                user.setUser_email ( edtUserEmail.getText ().toString () );
+                user.setUser_password ( edtUserPassword.getText ().toString () );
+
+                LoginUsingRetrofit ( user.getUser_email (), user.getUser_password () );
+
+            }
+        }
 
                 //loginusingvolley(user.getUser_email(), user.getUser_password());
 
-        public void loginUsingRetrofit(String email, String password) {
-            ProgressDialog proDialog = new ProgressDialog( this);
-            proDialog.setTitle("Retrovolley");
-            proDialog.setMessage("Silahkan tunggu");
-            proDialog.show();
-            String globalURL = pref.getString(GlobalVariable. BASE_URL,  null);
-            Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl(globalURL)
-                    .addConverterFactory( GsonConverterFactory.create());
-            Retrofit retrofit = builder.build();
-            MethodHTTP client = retrofit.create( MethodHTTP.class);
-            Call<UserResponse> call = client.login(email, password);
-            call.enqueue(new Callback<UserResponse>() {
+            public void LoginUsingRetrofit(String email, String password){
+                    ProgressDialog proDialog = new ProgressDialog ( this );
+                    proDialog.setTitle ( "Retrovolley" );
+                    proDialog.setMessage ( "Silahkan tunggu" );
+                    proDialog.show ();
+
+                    String globalURL = pref.getString ( GlobalVariable.BASE_URL, null );
+                    Retrofit.Builder builder = new Retrofit.Builder ()
+                            .baseUrl ( globalURL )
+                            .addConverterFactory ( GsonConverterFactory.create () );
+
+                    Retrofit retrofit = builder.build ();
+                    MethodHTTP client = retrofit.create ( MethodHTTP.class );
+                    Call<UserResponse> call = client.login ( email, password );
 
 
-                @Override
-                public void onResponse (Call<UserResponse> call, Response<UserResponse> response) {
-                    proDialog.dismiss();
-                    if (response.body() != null ) {
-                        if (response.body().getCode() == 200) {
-                            User loggedUser = response.body().getUser_list().get(0);
-                            Intent intent = new Intent(  LoginActivity. this, MainActivity.class);
-                            intent.putExtra(GlobalVariable.CURRENT_USERNAME,
-                                    loggedUser.getUser_fullname());
-                            startActivity(intent);
-                            startActivity(intent);
-                            finish();
-                        } else if (response.body().getCode() == 401){
-                            new AlertDialog.Builder(  LoginActivity. this)
-                                    .setTitle("Peringatan!")
-                                    .setMessage(response.body().getStatus())
-                                    .setPositiveButton(  "OK", new DialogInterface.OnClickListener (){
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    edtUserPassword.setText("");
-                                    dialogInterface.dismiss();
-                                }
-                            }).show();
-                        } else {
-                        //code 408
+                    call.enqueue ( new Callback<UserResponse> () {
 
 
-                            new AlertDialog.Builder(LoginActivity. this)
-                                     .setTitle("Peringatan!")
-                                    .setMessage(response.body().getStatus())
-                                    .setPositiveButton ( "OK", new DialogInterface.OnClickListener () {
+                        @Override
+                        public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                            proDialog.dismiss ();
+                            if (response.body () != null) {
+                                if (response.body ().getCode () == 200) {
+                                    User loggedUser = response.body ().getUser_list ().get ( 0 );
+                                    Intent intent = new Intent ( LoginActivity.this, MainActivity.class );
+                                    intent.putExtra ( GlobalVariable.CURRENT_USERNAME,
+                                            loggedUser.getUser_fullname ());
+
+                                    startActivity ( intent );
+                                    startActivity ( intent );
+                                    finish ();
+                                } else if (response.body ().getCode () == 401) {
+                                    new AlertDialog.Builder ( LoginActivity.this )
+                                            .setTitle ( "Peringatan!" )
+                                            .setMessage ( response.body ().getStatus () )
+                                            .setPositiveButton ( "OK", new DialogInterface.OnClickListener () {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    edtUserPassword.setText ( "" );
+                                                    dialogInterface.dismiss ();
+                                                }
+                                            } ).show ();
+                                } else {
+                                    //code 408
+
+
+                                    new AlertDialog.Builder ( LoginActivity.this )
+                                            .setTitle ( "Peringatan!" )
+                                            .setMessage ( response.body ().getStatus ())
+                                            .setPositiveButton ( "OK", new DialogInterface.OnClickListener () {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    Intent intent = new Intent ( LoginActivity.this, AddUserActivity.class );
+
+                                                    intent.putExtra ( GlobalVariable.TYPE_CONN,
+                                                            GlobalVariable.RETROFIT );
+
+                                                    startActivity ( intent );
+                                                    finish ();
+                                                }
+                                            } ).setNegativeButton ( "Batal", new DialogInterface.OnClickListener () {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent ( LoginActivity.this, AddUserActivity.class);
+                                            dialogInterface.dismiss ();
+                                        }
+                                    } ).show ();
+                                }
 
-                                intent.putExtra ( GlobalVariable.TYPE_CONN,
-                                        GlobalVariable.RETROFIT );
+                            } else {
+                                Toast.makeText ( LoginActivity.this, "Status : Error!",
+                                        Toast.LENGTH_SHORT ).show ();
+                            }
+                            Log.e ( TAG, "Error:" + response.message () );
 
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }).setNegativeButton(  "Batal",new DialogInterface.OnClickListener () {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                dialogInterface.dismiss();
-                                            }
-                                        }).show();
-                                    }
+                        }
 
-                        } else{
-                            Toast.makeText ( LoginActivity.this, "Status : Error!",
+
+                        @Override
+                        public void onFailure(Call<UserResponse> call, Throwable t) {
+                            proDialog.dismiss ();
+                            Log.d ( TAG, t.getMessage () );
+                            Toast.makeText ( LoginActivity.this, "Error : " + t.toString (),
                                     Toast.LENGTH_SHORT ).show ();
                         }
-                          Log.e(TAG, "Error:" +response.message());
-
-                        }
-
-
-
-                @Override
-                        public void onFailure(Call<UserResponse> call, Throwable t) {
-                            proDialog.dismiss();
-                            Log.d(TAG, t.getMessage());
-                            Toast.makeText(  LoginActivity. this,  "Error : "+t.toString(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    } );
 
                 }
-                public void loginusingVolley(String email, String password) {
-                    ProgressDialog proDialog = new ProgressDialog( this);
-                    proDialog.setTitle("Retrovolley");
-                    proDialog.setMessage("Silahkan tunggu");
-                    proDialog.show();
+                public void loginusingVolley (String email, String password){
+                    ProgressDialog proDialog = new ProgressDialog ( this );
+                    proDialog.setTitle ( "Retrovolley" );
+                    proDialog.setMessage ( "Silahkan tunggu" );
+                    proDialog.show ();
 
-                    Gson gson = new Gson();
-                    String URL = pref.getString(GlobalVariable. BASE_URL,  null) +
-                            "/volley/Login.php?email="+email+"&password="+password;
+                    Gson gson = new Gson ();
+                    String URL = pref.getString ( GlobalVariable.BASE_URL, null ) +
+                            "/volley/Login.php?email=" + email + "&password=" + password;
 
-                        JsonObjectRequest request = new JsonObjectRequest ( Request.Method.GET, URL,  null,
-                            new com.android.volley. Response. Listener<JSONObject>() {
+                    JsonObjectRequest request = new JsonObjectRequest ( Request.Method.GET, URL, null,
+                            new com.android.volley.Response.Listener<JSONObject> () {
                                 @Override
-                                public void onResponse (JSONObject response) {
+                                public void onResponse(JSONObject response) {
                                     proDialog.dismiss ();
-                                    UserResponse userResponse = gson.fromJson ( response.toString (),
-                                    gson.fromJson ( response.toString (),
-                                            UserResponse.class);
-                                    if (userResponse.getCode() == 200){
-                                        User loggedUser = userResponse.getUser_list ().get ();
-                                        Intent intent = new Intent ( LoginActivity.this, MainActivity.class);
+                                    UserResponse userResponse = gson.fromJson(response.toString(),
+                                                    UserResponse.class );
+                                    if (userResponse.getCode () == 200) {
+                                        User loggedUser = userResponse.getUser_list ().get (0);
+                                        Intent intent = new Intent ( LoginActivity.this, MainActivity.class );
                                         intent.putExtra ( GlobalVariable.CURRENT_USERNAME,
                                                 loggedUser.getUser_fullname () );
                                         startActivity ( intent );
 
                                         finish();
-                                    } else if (userResponse.getCode() == 481) {
-                                        new AlertDialog.Builder(  LoginActivity. this)
-                                          .setTitle("Peringatan!")
-                                                .setMessage(userResponse.getStatus())
+                                    } else if (userResponse.getCode () == 481) {
+                                        new AlertDialog.Builder ( LoginActivity.this )
+                                                .setTitle ( "Peringatan!" )
+                                                .setMessage ( userResponse.getStatus () )
                                                 .setPositiveButton ( "OK", new DialogInterface.OnClickListener () {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-
                                                         edtUserPassword.setText ( "" );
                                                         dialogInterface.dismiss ();
                                                     }
-                                                }).show();
+                                                } ).show();
                                     } else {
-                                        new AlertDialog.Builder(  LoginActivity. this)
-                                                .setTitle("Peringatan!")
-                                                .setMessage(userResponse.getStatus())
-                                                .setPositiveButton( "OK",
-                                                new DialogInterface.OnClickListener() {
+                                        new AlertDialog.Builder ( LoginActivity.this )
+                                                .setTitle ( "Peringatan!" )
+                                                .setMessage ( userResponse.getStatus () )
+                                                .setPositiveButton ( "OK",
+                                                        new DialogInterface.OnClickListener () {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                Intent intent = new Intent (
+                                                                        LoginActivity.this,
+                                                                        AddUserActivity.class );
+                                                                intent.putExtra ( GlobalVariable.TYPE_CONN,
+                                                                        GlobalVariable.RETROFIT );
+                                                                startActivity ( intent );
+                                                                finish ();
+                                                            }
+                                                        } ).setNegativeButton ( "Batal",
+                                                new DialogInterface.OnClickListener () {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                                    Intent intent = new Intent(
-                                                            LoginActivity. this,
-                                                    AddUserActivity.class);
-                                                    intent.putExtra(GlobalVariable.TYPE_CONN,
-                                                    GlobalVariable.RETROFIT);
-                                                    startActivity(intent);
-                                                    finish();
-                                                }
-                                    }).setNegativeButton(  "Batal",
-                                            new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.dismiss();
-                                        }
-                                    }).show();
+                                                        dialogInterface.dismiss ();
+                                                    }
+                                                } ).show ();
+                                    }
                                 }
-                                }
-                            }), new com.android.volley.Response.ErrorListener() {
+                            } , new com.android.volley.Response.ErrorListener () {
 
                         @Override
-                            public void onErrorResponse (VolleyError error) {
+                        public void onErrorResponse(VolleyError error) {
                             proDialog.dismiss ();
                             Toast.makeText ( getApplicationContext (), "Login Error : " + error.getMessage (),
                                     Toast.LENGTH_SHORT ).show ();
                             Log.e ( TAG, "Error : " + error.getMessage () );
                         }
-                            });
+                    });
                     int socketTimeout = 5800; //delay 5 detik
-                            RetryPolicy policy = new DefaultRetryPolicy ( socketTimeout,
-                                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                            request.setRetryPolicy ( policy );
-                    RequestQueue requestQueue = Volley.newRequestQueue (LoginActivity.this);
+                    RetryPolicy policy = new DefaultRetryPolicy ( socketTimeout,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT );
+                    request.setRetryPolicy ( policy );
+                    RequestQueue requestQueue = Volley.newRequestQueue ( LoginActivity.this );
                     requestQueue.add ( request );
                 }
 
 
-
-    }
+            }
