@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
-                Toast.makeText ( MainActivity.this, "Gagal Menghubungkan Server",Toast.LENGTH_SHORT).show ();
+                Toast.makeText ( MainActivity.this, "Gagal Menghubungkan Server" +t.getMessage (),Toast.LENGTH_SHORT).show ();
             }
         } );
     }
