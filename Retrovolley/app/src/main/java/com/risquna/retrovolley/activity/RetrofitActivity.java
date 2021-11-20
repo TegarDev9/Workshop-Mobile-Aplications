@@ -40,17 +40,8 @@ public class RetrofitActivity extends AppCompatActivity {
     private List<User> listUser = new ArrayList<> ();
     private SharedPreferences pref;
 
-    @Override
-    protected void onCreate( Bundle savedInstanceState) {
-        super.onCreate ( savedInstanceState );
-        setContentView ( R.layout.activity_retrofit );
-        TvUser = findViewById ( R.id.Tv_user );
-        pref = getSharedPreferences ( GlobalVariable.PREFERENCE_NAME, MODE_PRIVATE );
-       //getUserFromAPI();
 
-       // setTitle ( getString ( R.string.retrofit));
-        setTitle ( "Retrofit" );
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,6 +108,7 @@ public class RetrofitActivity extends AppCompatActivity {
 
                         }
                     } );
+
                 }else{
                     Toast.makeText ( getApplicationContext (), "Data Kosong", Toast.LENGTH_SHORT ).show ();
                 }

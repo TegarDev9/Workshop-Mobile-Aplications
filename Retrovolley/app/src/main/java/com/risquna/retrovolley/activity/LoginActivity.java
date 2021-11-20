@@ -65,8 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         int id = item.getItemId ();
         switch (id) {
             case R.id.action_url:
-                View urlView = getLayoutInflater ().inflate ( R.layout.prompt, null );
-                EditText edtBaseURL = urlView.findViewById ( R.id.edt_base_url );
+
                 String globalURL = pref.getString ( GlobalVariable.BASE_URL, null );
                 if (globalURL != null) {
                     edtBaseURL.setText ( globalURL );

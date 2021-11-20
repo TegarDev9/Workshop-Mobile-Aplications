@@ -76,59 +76,57 @@ public class VolleyActivity extends AppCompatActivity {
     }
 
 
-
     private void getUserFromAPI() {
-            Gson gson = new Gson();
-            String URL = pref.getString( GlobalVariable. BASE_URL,  null)
-            + "/volley/User_Registration.php";
-            ProgressDialog proDialog = new ProgressDialog(  this);
-            proDialog.setTitle("Volley");
-            proDialog.setMessage("Silahkan tunggu");
-            proDialog.show();
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL,
-                     null,
-                    new Response.Listener<JSONObject> () {
-                        @Override
-                        public void onResponse (JSONObject response) {
-                            proDialog.dismiss();
-                            if (response != null) {
-                                UserResponse userResponse = gson.fromJson(response.toString(),
-                                        UserResponse.class);
-                                if (userResponse.getCode() == 200) {
-                                    UserAdapter adapter = new UserAdapter ( getApplicationContext ().
-                                            userResponse.getUser_list () );
-                                    lvUserVolley.setAdapter ( adapter );
-                                    lvUserVolley.setOnItemClickListener (
-                                            new AdapterView.OnItemClickListener () {
+        Gson gson = new Gson ();
+        String URL = pref.getString ( GlobalVariable.BASE_URL, null )
+                + "/volley/User_Registration.php";
+        ProgressDialog proDialog = new ProgressDialog ( this );
+        proDialog.setTitle ( "Volley" );
+        proDialog.setMessage ( "Silahkan tunggu" );
+        proDialog.show ();
+        JsonObjectRequest request = new JsonObjectRequest ( Request.Method.GET, URL,
+                null,
+                new Response.Listener<JSONObject> () {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        proDialog.dismiss ();
+                        if (response != null) {
+                            UserResponse userResponse = gson.fromJson ( response.toString (),
+                                    UserResponse.class );
+                            if (userResponse.getCode () == 200) {
+                                UserAdapter adapter = new UserAdapter ( getApplicationContext ().
+                                        userResponse.getUser_list () );
+                                lvUserVolley.setAdapter ( adapter );
+                                lvUserVolley.setOnItemClickListener (
+                                        new AdapterView.OnItemClickListener () {
 
-                                                @Override
-                                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                            @Override
+                                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                                    Toast.makeText ( getApplicationContext (),
-                                                            userResponse.getUser_list ().get ( i ).getUser_fullname (),
-                                                            Toast.LENGTH_SHORT ).show ();
-                                                }
-                                            } );
-                                      }
-                                }
+                                                Toast.makeText ( getApplicationContext (),
+                                                        userResponse.getUser_list ().get ( i ).getUser_fullname (),
+                                                        Toast.LENGTH_SHORT ).show ();
+                                            }
+                                        } );
                             }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                proDialog.dismiss();
-                                Toast.makeText(getApplicationContext(),  "Volley Error :" + error.getMessage (),
-                                Toast.LENGTH_SHORT).show();
-                                Log.e (  TAG,  "Error :" + error.getMessage());
-                            }
-
-                        });
-                     RequestQueue requestQueue = Volley.newRequestQueue (getApplicationContext());
-                                requestQueue.add(request);
+                        }
                     }
+                }, new Response.ErrorListener () {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                proDialog.dismiss ();
+                Toast.makeText ( getApplicationContext (), "Volley Error :" + error.getMessage (),
+                        Toast.LENGTH_SHORT ).show ();
+                Log.e ( TAG, "Error :" + error.getMessage () );
+            }
+
+        } );
+        RequestQueue requestQueue = Volley.newRequestQueue ( getApplicationContext () );
+        requestQueue.add ( request );
+    }
 
 
-
-
+}
 
 
 

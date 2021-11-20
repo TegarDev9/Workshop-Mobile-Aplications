@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main );
 
         pref = getSharedPreferences ( GlobalVariable.PREFERENCE_NAME, MODE_PRIVATE );
+
         Bundle extras = getIntent ().getExtras ();
         if (extras != null) {
             setTitle ( extras.getString ( GlobalVariable.CURRENT_USERNAME ) );

@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.risquna.retrovolley.R;
 import com.risquna.retrovolley.model.User;
 import com.risquna.retrovolley.retrofit.GlobalVariable;
@@ -174,6 +175,7 @@ public class AddUserActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest ( com.android.volley.Request.Method.POST,
                 URL, null,
                 new com.android.volley.Response.Listener<JSONObject> () {
+
                     @Override
                     public void onResponse(JSONObject response) {
                         proDialog.dismiss ();
@@ -181,18 +183,18 @@ public class AddUserActivity extends AppCompatActivity {
                             Request requestFormat = gson.fromJson ( response.toString (), Request.class );
                             if (requestFormat.getCode () == 201) {
                                 Toast.makeText ( getApplicationContext (),
-                                        "Response :" + requestFormat.getStatus (),
+                                        "Response :" +requestFormat.getStatus (),
                                         Toast.LENGTH_SHORT ).show ();
                                 finish ();
 
                             } else if (requestFormat.getCode () == 406) {
                                     Toast.makeText ( getApplicationContext (),
-                                            "Response : " + requestFormat.getStatus (),
+                                            "Response : " +requestFormat.getStatus (),
                                             Toast.LENGTH_SHORT ).show ();
 
                         } else {
                             Toast.makeText ( getApplicationContext (),
-                                    "Response :" + requestFormat.getStatus (),
+                                    "Response :" +requestFormat.getStatus (),
                                     Toast.LENGTH_SHORT ).show ();
                             finish ();
                         }
