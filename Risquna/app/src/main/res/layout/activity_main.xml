@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_pets" />
+        app:srcCompat="@drawable/rr" />
 
     <ProgressBar
         android:layout_marginTop="100dp"

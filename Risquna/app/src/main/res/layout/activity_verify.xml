@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/abu2"
+    android:padding="30dp"
+    tools:context=".Verify">
+
+    <TextView
+        android:id="@+id/tv_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/medium"
+        android:gravity="center_horizontal"
+        android:text="Check Your Email"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_note1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_check"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center_horizontal"
+        android:textSize="15sp"
+        android:text="We have sent the code to your email" />
+
+
+    <EditText
+        android:id="@+id/et_code1"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tv_note1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/custum_text"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:hint="-"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/et_code2"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tv_note1"
+        android:layout_toRightOf="@+id/et_code1"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custum_text"
+        android:gravity="center"
+        android:fontFamily="@font/regular"
+        android:hint="-"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/et_code3"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tv_note1"
+        android:layout_toRightOf="@+id/et_code2"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custum_text"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:hint="-"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/et_code4"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tv_note1"
+        android:layout_toRightOf="@+id/et_code3"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custum_text"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:hint="-"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/et_code5"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/tv_note1"
+        android:layout_toRightOf="@+id/et_code4"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custum_text"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:hint="-"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:text="Code expires in: 1:00"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_code1"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/btn_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_timer"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custum_btn"
+        android:fontFamily="@font/medium"
+        android:text="Verify"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/btn_sendAgain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_verify"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_button_stroke"
+        android:fontFamily="@font/medium"
+        android:text="Send Again"
+        android:textColor="@color/biru2"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_footerVerify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sendAgain"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="72dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center_horizontal"
+        android:text="Already have account?, "
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_footerUp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sendAgain"
+        android:layout_toRightOf="@+id/tv_footerVerify"
+        android:layout_marginTop="160dp"
+        android:fontFamily="@font/regular"
+        android:text=" Sign In"
+        android:textColor="@color/PrimaryDark"
+        android:textSize="15sp"/>
+
+</RelativeLayout>

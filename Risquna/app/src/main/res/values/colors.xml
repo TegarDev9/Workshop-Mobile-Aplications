@@ -13,4 +13,9 @@
     <color name="colorPrimary">#ff4800</color>
     <color name="colorPrimaryDark">#dc4a10</color>
     <color name="colorAccent">#009cfd</color>
+    <color name="abu2">#F5F5F8</color>
+    <color name="abu3">#DFE0F3</color>
+    <color name="biru">#DFE0F3</color>
+    <color name="biru2">#4C4DDC</color>
+    <color name="PrimaryDark">#2223CA</color>
 </resources>

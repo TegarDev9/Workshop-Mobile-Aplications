@@ -9,17 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RisqunaRidhoStore">
-
         <activity
-            android:name="com.risquna.risqunaridho.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:name=".RegisterSuccess"
+            android:exported="true" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+    <activity android:name=".Login" />
+    <activity android:name=".registrasi" />
+    <activity android:name=".Verify" />
+
         <activity android:name="com.risquna.risqunaridho.EditorActivity"
             android:theme="@style/EditorTheme">
         </activity>
