@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rtegar.laundryku.API.APIRequestData;
 import com.rtegar.laundryku.API.RetroServer;
 import com.rtegar.laundryku.Adapter.AdapterData;
@@ -26,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adData;
     private RecyclerView.LayoutManager lmData;
     private List<DataModel> listData = new ArrayList<> ();
+    private FloatingActionButton fabTambah;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         rvData = findViewById ( R.id.rv_data );
         lmData = new LinearLayoutManager ( this, LinearLayoutManager.VERTICAL,false );
          rvData.setLayoutManager ( lmData );
+         fabTambah = findViewById ( R.id.fab_tambah );
         retrieveData ();
     }
 
@@ -49,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
              int kode = response.body ().getKode ();
              String pesan = response.body ().getPesan ();
 
-                Toast.makeText ( MainActivity.this, "Kode:" +kode+"  |Pesan:"+pesan, Toast.LENGTH_SHORT ).show ();
+            //    Toast.makeText ( MainActivity.this, "Kode:" +kode+"  |Pesan:"+pesan, Toast.LENGTH_SHORT ).show ();
 
                 listData = response.body ().getData ();
 
@@ -61,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 Toast.makeText ( MainActivity.this, "Gagal Menghubungkan Server" +t.getMessage (),Toast.LENGTH_SHORT).show ();
+            }
+        } );
+        fabTambah.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                startActivity ( new Intent ( MainActivity.this,TambahActivity.class));
             }
         } );
     }
